@@ -1,0 +1,46 @@
+<div class="main-panel">
+  <div class="content col-sm-12">
+    <div class="card-body table-responsive custom-table">
+      <div class="col-sm-12 custom-table">
+        <h2>Les projets PFE proposés par Département</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 custom-table">
+          <div class="show-entries">
+            <div class="col-sm-12">
+              <h3><b></b></h3>
+            </div>
+            <select class="col-sm-12 form-control" [(ngModel)]="searchText">
+              <option><b>Selectionner une département:</b></option>
+              <option *ngFor="let dep of allDepartements">
+                {{ dep.nomDepartement }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="table-filter">
+        <table class="table table-head-bg-primary mt-4 custom-table col-sm-12">
+          <thead>
+            <tr>
+              <th>Département</th>
+              <th>Encadrant</th>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Nombre des étudiants dans groupe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sujet of allSujets | filter : searchText">
+              <td>{{ sujet.encadrant.departement.nomDepartement }}</td>
+              <td>{{ sujet.encadrant.nom }} {{ sujet.encadrant.prenom }}</td>
+              <td>{{ sujet.titre }}</td>
+              <td>{{ sujet.description }}</td>
+              <td>{{ sujet.nombreMembres }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

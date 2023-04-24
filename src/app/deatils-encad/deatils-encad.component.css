@@ -1,0 +1,40 @@
+.card .card-body .lien-drive a:hover {
+  background-color: aqua;
+  color: black;
+  text-decoration: none;
+}
+
+.custom-select {
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: #495057;
+  font-size: 16px;
+  height: 34px;
+  line-height: 1.5;
+  padding: 6px 12px;
+}
+button {
+  background-color: yellow;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container button {
+  margin: 0 auto; /* this centers the button horizontally */
+}
+
+.en-attente {
+  color: gray;
+  font-weight: bold;
+}
+.refuse {
+  color: red;
+  font-weight: bold;
+}
+.accepte {
+  color: green;
+  font-weight: bold;
+}

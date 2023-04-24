@@ -1,0 +1,36 @@
+<div class="main-panel">
+  <div class="content">
+    <div class="card-body table-responsive" *ngIf="allSujet.length != 0">
+      <div class="col-sm-6">
+        <h2>Postulation sur les sujets</h2>
+      </div>
+      <table class="table table-head-bg-primary mt-4">
+        <thead>
+          <tr>
+            <th>Titre du Sujet</th>
+
+            <th>Groupes postulés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sujet of allSujet">
+            <td>
+              <b>{{ sujet.titre }}</b>
+            </td>
+
+            <td>
+              <input
+                type="button"
+                value="Groupes"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                class="btn btn-success me-2"
+                routerLink="/groupes-postules/{{ sujet.id }}"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="main-panel">
+  <div class="content">
+    <div class="card-body table-responsive">
+      <div class="col-sm-6">
+        <h2><b>Les sujets PFE</b> proposés</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 custom-table">
+          <div class="show-entries">
+            <div class="col-sm-12">
+              <h3><b></b></h3>
+            </div>
+            <select class="col-sm-12 form-control" [(ngModel)]="searchText">
+              <option><b>Selectionner une département:</b></option>
+              <option *ngFor="let dep of allDepartements">
+                {{ dep.nomDepartement }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="table-filter">
+        <table class="table table-head-bg-primary mt-4">
+          <thead>
+            <tr>
+              <th>Encadrant</th>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Nombre des etudiants</th>
+              <th>Sélectionné pour un groupe</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sujet of allSujets | filter : searchText">
+              <td>{{ sujet.encadrant.nom }} {{ sujet.encadrant.prenom }}</td>
+              <td>{{ sujet.titre }}</td>
+              <td>{{ sujet.description }}</td>
+              <td>{{ sujet.nombreMembres }}</td>
+              <td>{{ sujet.choisie == "oui" ? "Oui" : "Non" }}</td>
+              <td>
+                <button
+                  [disabled]="encadre != 'non' || sujet.choisie == 'oui'"
+                  class="btn btn-success"
+                  routerLink="/postuler/{{ sujet.id }}"
+                >
+                  Postuler
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

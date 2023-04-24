@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container button {
+    margin: 0 auto; /* this centers the button horizontally */
+  }
+ 
+    .en-attente {
+        color: gray;
+        font-weight: bold;
+    }
+    .refuse {
+        color: red;
+        font-weight: bold;
+    }
+    .accepte {
+        color: green;
+        font-weight: bold;
+    }
+

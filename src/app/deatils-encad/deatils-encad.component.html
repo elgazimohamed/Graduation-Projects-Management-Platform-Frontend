@@ -1,0 +1,227 @@
+<div class="main-panel">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>
+            Groupe de travail du sujet : <b>{{ sujet.titre }}</b>
+          </h3>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center title-2">Details sur le travail</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <div class="table-responsive table-style1">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Description du sujet</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ sujet.description }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Nombre des étudiants dans groupe</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ sujet.nombreMembres }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let etudiant of etudiants">
+                      <td class="text-primary">
+                        <h5>
+                          <b>Membre {{ etudiants.indexOf(etudiant) + 1 }}</b>
+                        </h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ etudiant.prenom }} {{ etudiant.nom }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-6">
+            <!--Rendez vous envoyes par la groupe-->
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"><b>Les demandes des rendez-vous</b></h4>
+              </div>
+              <div class="card-body">
+                <div class="card-body">
+                  <table class="table table-head-bg-primary mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">Les rendez-vous</th>
+                        <th scope="col">Sujet</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let rendez of allrend; let i = index">
+                      <tr>
+                        <td>
+                          <b>{{ i + 1 }}</b>
+                        </td>
+                        <td>
+                          <b>{{ rendez.sujet_rnd }}</b>
+                        </td>
+                        <td>
+                          <b>{{ rendez.date }} à {{ rendez.heure }}</b>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!--Lien de drive envoye par la groupe-->
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  <b>Le Lien de dossier dans Google Drive</b>
+                </h4>
+              </div>
+              <div class="card-body text-center">
+                <a href="{{ etudiants[0].groupe.lienDrive }}" target="_blank"
+                  >Dossier des fichiers</a
+                >
+              </div>
+            </div>
+          </div>
+          <!--Rendez vous d'encadrant-->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <div class="container">
+                  <h4 class="card-title"><b>Prisez un rendez vous</b></h4>
+                  <button
+                    class="btn btn-success"
+                    type="submit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    <span>Rendez vous</span>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-head-bg-success">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rendez-vous</th>
+                      <th scope="col">Sujet</th>
+                      <th scope="col">Date proposée</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Modal d'ajouter un rendez vous -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      <b>Prise de rendez vous</b>
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="row g-3" [formGroup]="">
+                      <div class="mb-3">
+                        <label for="inputTitre" class="form-label"
+                          >Sujet:</label
+                        >
+                        <input
+                          type="text"
+                          formControlName="sujet"
+                          class="form-control"
+                          id="inputTitre"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="inputDate" class="form-label"
+                          >Date proposée</label
+                        >
+                        <input
+                          class="form-control"
+                          formControlName="date"
+                          type="date"
+                          id="date"
+                          name="date"
+                          min=""
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputHeure" class="form-label"
+                          >Heure proposée</label
+                        >
+                        <input
+                          type="time"
+                          formControlName="heure"
+                          id="time"
+                          name="time"
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-warning"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Priser
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          // Get the current date
+          const today = new Date();
+
+          // Set the min attribute to today's date
+          const dateField = document.getElementById("date");
+          dateField.min = today.toISOString().slice(0, 10);
+        </script>
+      </div>
+    </div>
+  </div>
+</div>

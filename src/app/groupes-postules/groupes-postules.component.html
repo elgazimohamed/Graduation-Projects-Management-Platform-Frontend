@@ -1,0 +1,101 @@
+<div class="main-panel">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Les groupes complètes qui ont postulé pour ce sujet</h1>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center title-2">Details du projet PFE</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <div class="table-responsive table-style1">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Titre</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ sujet.titre }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Description</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ sujet.description }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Nombre des membres</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ sujet.nombreMembres }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row" *ngFor="let groupe of groupePostule">
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header">
+                <!-- <h4 class="card-title">groupe</h4> -->
+              </div>
+              <div class="card-body">
+                <div class="card-body">
+                  <table class="table table-head-bg-primary mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">Code Appogée</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Filière</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let etudiant of groupe">
+                        <th scope="col">{{ etudiant.codeApogee }}</th>
+                        <th scope="col">{{ etudiant.nom }}</th>
+                        <th scope="col">{{ etudiant.prenom }}</th>
+                        <th scope="col">{{ etudiant.filiere.nomFiliere }}</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div
+                    class="d-grid gap-2 d-md-flex justify-content-md-end text-center"
+                  >
+                    <button
+                      id="rejoindre"
+                      class="btn btn-success"
+                      type="submit"
+                      (click)="accepter(groupe)"
+                    >
+                      Accepter
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+<div class="main-panel">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9">
+          <h3>
+            Postuler au projet : <b>{{ data.titre }}</b>
+          </h3>
+        </div>
+        <div class="col-sm-3">
+          <button
+            class="btn btn-success btn"
+            data-toggle="modal"
+            (click)="creerGroupe()"
+            *ngIf="disable"
+          >
+            Créer un groupe
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center title-2">Détails du sujet</h3>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <div class="table-responsive table-style1">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Encadrant</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b
+                            >{{ data.encadrant.nom }}
+                            {{ data.encadrant.prenom }}</b
+                          >
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Titre</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ data.titre }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Description</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ data.description }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-primary">
+                        <h5><b>Nombre de membres</b></h5>
+                      </td>
+                      <td>
+                        <h5>
+                          <b>{{ data.nombreMembres }}</b>
+                        </h5>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div class="row" *ngFor="let groupe of groupes">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">
+                  Groupe {{ groupes.indexOf(groupe) + 1 }}
+                </h4>
+              </div>
+              <div class="card-body">
+                <div class="card-body">
+                  <table class="table table-head-bg-primary mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">Code Appogée</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let etudiant of groupe">
+                        <th scope="col">{{ etudiant.codeApogee }}</th>
+                        <th scope="col">{{ etudiant.nom }}</th>
+                        <th scope="col">{{ etudiant.prenom }}</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div
+                    class="d-grid gap-2 d-md-flex justify-content-md-end text-center"
+                  >
+                    <button
+                      id="rejoindre"
+                      class="btn btn-success"
+                      type="submit"
+                      (click)="rejoindreGroupe(groupe)"
+                      *ngIf="data.nombreMembres != groupe.length"
+                    >
+                      Rejoindre le groupe
+                    </button>
+                    <div
+                      *ngIf="data.nombreMembres == groupe.length"
+                      class="btn-no-work"
+                    >
+                      Groupe complète
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
